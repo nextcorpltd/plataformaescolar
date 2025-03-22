@@ -15,8 +15,8 @@ class Repository extends Model
         ];
     }
 
-    // public function document()
-    // {
-    //     return $this->hasOne(Document::class);
-    // }
+    public function document()
+    {
+        return $this->hasOne(Document::class);
+    }
 }

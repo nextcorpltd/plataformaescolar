@@ -15,10 +15,15 @@ class Document extends Model
         ];
     }
 
-    // public function repository()
-    // {
-    //     $this->belongsTo(Repository::class);
-    // }
+    public function repository()
+    {
+        $this->belongsTo(Repository::class, 'repository_id');
+    }
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
+    }
 
     public function sources()
     {

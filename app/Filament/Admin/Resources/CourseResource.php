@@ -5,7 +5,9 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\CourseResource\Pages;
 use App\Filament\Admin\Resources\CourseResource\RelationManagers;
 use App\Models\Course;
+use App\Models\Section;
 use Filament\Forms;
+use Filament\Forms\Components\Section as ComponentsSection;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,25 +19,37 @@ class CourseResource extends Resource
 {
     protected static ?string $model = Course::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+
+    protected static ?string $navigationGroup = 'Portal';
+
+    protected static ?string $modelLabel = 'curso';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('section_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
-                Forms\Components\Textarea::make('content')
-                    ->columnSpanFull(),
+               ComponentsSection::make()->schema([
+                Forms\Components\Select::make('section_id')
+                ->label('Formação')
+                ->options(Section::all()->pluck('name', 'id'))
+                ->searchable(),
+            Forms\Components\TextInput::make('name')
+                ->label('Nome')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('slug')
+            ->label('URL')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\FileUpload::make('image')
+            ->label('Imagem de destaque')
+            ->directory('courses')
+                ->image(),
+            Forms\Components\RichEditor::make('content')
+                ->label('Conteúdo')
+                ->columnSpanFull(),
+               ])
             ]);
     }
 
@@ -43,22 +57,12 @@ class CourseResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('section_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('section.name')
+                    ->label('Formação')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Curso')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

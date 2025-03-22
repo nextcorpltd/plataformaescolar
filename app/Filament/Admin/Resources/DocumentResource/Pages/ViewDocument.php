@@ -3,18 +3,20 @@
 namespace App\Filament\Admin\Resources\DocumentResource\Pages;
 
 use App\Filament\Admin\Resources\DocumentResource;
+use App\Filament\Admin\Widgets\StatsDocument;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditDocument extends EditRecord
+class ViewDocument extends ViewRecord
 {
     protected static string $resource = DocumentResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            //Actions\EditAction::make(),
         ];
     }
+
+
 }

@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\PageResource\Pages;
 use App\Filament\Admin\Resources\PageResource\RelationManagers;
 use App\Models\Page;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,22 +18,34 @@ class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-folder-open';
+
+    protected static ?string $navigationGroup = 'Portal';
+
+    protected static ?string $modelLabel = 'página';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Section::make()->schema([
+                    Forms\Components\TextInput::make('name')
+                    ->label('Título da página')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
                     ->required()
+                    ->label('URL')
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
+                ->label('Imagem de destaque')
+                ->directory('pages')
+                ->columnSpanFull()
                     ->image(),
-                Forms\Components\Textarea::make('content')
+                Forms\Components\RichEditor::make('content')
+                ->label('Conteúdo')
                     ->columnSpanFull(),
+                ])->columns(2)
             ]);
     }
 
@@ -41,18 +54,8 @@ class PageResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Título')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

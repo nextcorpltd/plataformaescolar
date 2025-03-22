@@ -7,6 +7,7 @@ use App\Models\Repository;
 use App\Models\Source;
 use App\Models\User;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -33,6 +34,8 @@ class Plage extends Page implements HasForms
 
     protected ?string $subheading = 'Adicione um conteúdo ou um ficheiro para verificar.';
 
+    protected static ?string $navigationGroup = 'Verificador de plágio';
+
     use InteractsWithForms;
 
     public ?array $data = [];
@@ -55,11 +58,11 @@ class Plage extends Page implements HasForms
                     //     ->label('Curso'),
                     // TextInput::make('teacher')
                     //     ->label('Orientador'),
-                    Textarea::make('content')
+                    RichEditor::make('content')
                         ->columnSpanFull()
                         ->label('Adicione aqui o conteúdo'),
                     Select::make('repository_id')
-                        ->label('Ficheiro de tese')
+                        ->label('Ficheiro de tese do estudante')
                         ->options(Repository::all()->pluck('author', 'id'))
                         ->searchable()
                         ->columnSpanFull()
@@ -74,21 +77,20 @@ class Plage extends Page implements HasForms
     {
         $data = $this->form->getState();
 
-        dd($data);
-
+        $tese = Repository::find($data['repository_id']);
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer TI1S4rhTBW8KVoWhQ18PdVl8lCYtCBVpPPcv6Jh12ffe401a',
             'Content-Type' => 'application/json',
         ])->post('https://api.gowinston.ai/v2/plagiarism', [
             'text' => $data['content'],
-            'file' => 'https://s3.amazonaws.com/rd-marketing-objects/ebook_guia-definitivo-marketing-digital/guia-definitivo-marketing-digital.pdf',
+            'file' => ($data['repository_id'] ? asset($tese->file) : ''),
         ]);
 
         if ($response->successful()) {
            $result = Document::query()->create([
                 'user_id' => Auth::user()->id,
-                'repository_id' => $data['repository_id'],
+                'repository_id' => ($data['repository_id'] ? $data['repository_id'] : null),
                 'content' => $data['content'],
                 // 'author' => $data['author'],
                 // 'course' => $data['course'],

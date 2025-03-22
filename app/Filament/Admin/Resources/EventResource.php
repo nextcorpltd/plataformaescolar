@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\EventResource\Pages;
 use App\Filament\Admin\Resources\EventResource\RelationManagers;
 use App\Models\Event;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,24 +18,40 @@ class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-ticket';
+
+    protected static ?string $navigationGroup = 'Portal';
+
+    protected static ?string $modelLabel = 'evento';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Section::make()->schema([
+                    Forms\Components\TextInput::make('name')
                     ->required()
+                    ->label('Nome')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
                     ->required()
+                    ->label('URL')
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
+                ->label('Imagem de destaque')
+                ->directory('events')
+                ->columnSpanFull()
                     ->image(),
-                Forms\Components\Textarea::make('content')
+                Forms\Components\RichEditor::make('content')
+                ->label('Conteúdo')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('images')
+                Forms\Components\FileUpload::make('images')
+                    ->image()
+                    ->multiple()
+                    ->label('Galeria de fotos')
+                    ->directory('events')
                     ->columnSpanFull(),
+                ])->columns()
             ]);
     }
 
@@ -42,19 +59,12 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image')
+                ->label('Capa')
+                ->circular(),
                 Tables\Columns\TextColumn::make('name')
+                ->label('Nome')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
