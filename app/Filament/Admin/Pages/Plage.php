@@ -63,10 +63,13 @@ class Plage extends Page implements HasForms
                         ->columnSpanFull()
                         ->label('Adicione aqui o conteúdo'),
                     Select::make('repository_id')
-                        ->label('Ficheiro de tese do estudante')
+                        ->label('Autor da tese')
                         ->options(Repository::all()->pluck('author', 'id'))
                         ->searchable()
+                        ->columnSpanFull(),
+                    TextInput::make('file')
                         ->columnSpanFull()
+                        ->label('Cole o link do ficheiro'),
 
                 ])->columns()
                 // ...
@@ -80,12 +83,15 @@ class Plage extends Page implements HasForms
 
         $tese = Repository::find($data['repository_id']);
 
+        dd($tese->file);
+
         $response = Http::withHeaders([
             'Authorization' => 'Bearer TI1S4rhTBW8KVoWhQ18PdVl8lCYtCBVpPPcv6Jh12ffe401a',
             'Content-Type' => 'application/json',
         ])->post('https://api.gowinston.ai/v2/plagiarism', [
             'text' => $data['content'],
-            'file' => ($data['repository_id'] ? 'https://ispel.dembi.ao/'.$tese->file : ''),
+            'file' => ($data['repository_id'] ? 'https://ispel.dembi.ao/storage/'.$tese->file : ''),
+            //'file' => $data['file'],
         ]);
 
         if ($response->successful()) {

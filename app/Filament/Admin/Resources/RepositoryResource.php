@@ -45,6 +45,8 @@ class RepositoryResource extends Resource
                     ->label('Carregue aqui o ficheiro da tese')
                     ->acceptedFileTypes(['application/pdf'])
                     ->columnSpanFull()
+                    ->downloadable()
+                    ->openable()
                     ->directory('repo'),
                 Forms\Components\Toggle::make('is_repo')
                     ->label('Visível para o público')
