@@ -83,7 +83,7 @@ class Plage extends Page implements HasForms
 
         $tese = Repository::find($data['repository_id']);
 
-        dd($tese->file);
+        //dd($tese->file);
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer TI1S4rhTBW8KVoWhQ18PdVl8lCYtCBVpPPcv6Jh12ffe401a',
