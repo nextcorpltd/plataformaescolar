@@ -12,7 +12,7 @@
         <div><strong>Data de verificação:</strong> <span>{{ date('d/m/Y H:i', strtotime($repository->created_at ?? null)) }}</span></div>
     </div>
 
-    <style>
+    <style>  
         .stats{
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));

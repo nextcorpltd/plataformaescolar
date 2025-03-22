@@ -67,9 +67,7 @@ class Plage extends Page implements HasForms
                         ->options(Repository::all()->pluck('author', 'id'))
                         ->searchable()
                         ->columnSpanFull(),
-                    TextInput::make('file')
-                        ->columnSpanFull()
-                        ->label('Cole o link do ficheiro'),
+
 
                 ])->columns()
                 // ...
