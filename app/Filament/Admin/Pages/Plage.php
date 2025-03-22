@@ -18,6 +18,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 
 class Plage extends Page implements HasForms
@@ -130,6 +131,8 @@ class Plage extends Page implements HasForms
                 ->body('Será redirecionado/a ao relatório.')
                 ->success()
                 ->send();
+
+            redirect()->route('filament.admin.resources.documents.view', $result->id);
         } else {
             Notification::make()
                 ->title('Alguma coisa deu errado')
@@ -141,5 +144,7 @@ class Plage extends Page implements HasForms
 
 
     }
+
+
 
 }

@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('credits_used')->nullable();
 
             $table->text('observation')->nullable();
+            $table->boolean('generator')->default(false);
 
             $table->timestamps();
         });

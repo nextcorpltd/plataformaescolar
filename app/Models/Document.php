@@ -12,6 +12,7 @@ class Document extends Model
     {
         return [
             'content' => 'array',
+            'generator' => 'boolean'
         ];
     }
 

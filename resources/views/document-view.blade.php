@@ -6,10 +6,10 @@
     @endphp
 
     <div class="flex flex-col gap-1">
-        <div><strong>Autor/a:</strong> <span>{{ $repository->author }}</span></div>
-        <div><strong>Curso:</strong> <span>{{ $repository->course }}</span></div>
-        <div><strong>Moderador:</strong> <span>{{ $repository->teacher }}</span></div>
-        <div><strong>Data de verificação:</strong> <span>{{ date('d/m/Y H:i', strtotime($repository->created_at)) }}</span></div>
+        <div><strong>Autor/a:</strong> <span>{{ $repository->author ?? null }}</span></div>
+        <div><strong>Curso:</strong> <span>{{ $repository->course ?? null }}</span></div>
+        <div><strong>Moderador:</strong> <span>{{ $repository->teacher ?? null }}</span></div>
+        <div><strong>Data de verificação:</strong> <span>{{ date('d/m/Y H:i', strtotime($repository->created_at ?? null)) }}</span></div>
     </div>
 
     <style>
@@ -22,10 +22,16 @@
     <div class="mt-6">
         <x-filament::section>
             <div class="flex justify-between items-center">
-                <h1 class="text-2xl font-black">{{ $repository->title }}</h1>
-                <x-filament::button>
-                    Descarregar o relatório
+                <h1 class="text-2xl font-black">{{ $repository->title ?? null }}</h1>
+                @if ($document->generator)
+                <x-filament::button target="_blank" color="gray" tag="a" href="/{{ \Illuminate\Support\Str::slug($repository->title).'.pdf' }}">
+                    Descarregar
                 </x-filament::button>
+                @else
+                <x-filament::button wire:click="generator({{ $repository->id }})">
+                    Gerar relatório
+                </x-filament::button>
+                @endif
             </div>
         </x-filament::section>
     </div>
