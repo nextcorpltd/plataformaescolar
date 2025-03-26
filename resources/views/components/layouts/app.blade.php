@@ -16,7 +16,7 @@
         </style>
 
         @filamentStyles
-        @vite('resources/css/app.css')
+
 
          <!-- Libs CSS -->
         <link rel="stylesheet" href="{{ asset("assets/libs/bootstrap-icons/font/bootstrap-icons.min.css") }}" />
@@ -204,7 +204,7 @@
         </footer>
 
         @filamentScripts
-        @vite('resources/js/app.js')
+     
 
         <!-- end of footer -->
         <script src="{{ asset("assets/js/vendors/validation.js") }}"></script>
