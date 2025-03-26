@@ -46,7 +46,7 @@
     <div class="topo">
         <img src="images/logo.jpeg" alt="" style="width: 100px"/>
         <h1>ISPEL</h1>
-        <h2>Instituto Superior Politécnico Envangélico do Lubango</h2>
+        <h2>Instituto Superior Politécnico Evangélico do Lubango</h2>
     </div>
     <div class="subtopo">
         <h3>Verificação de Plágio</h3>
@@ -58,7 +58,7 @@
         <div style="display: block;"><strong>Data:</strong> {{ date('d/m/Y H:i', strtotime($repo['created_at'])) }}</div>
     </div>
     <div class="info">
-        <p>Este sistema foi desenvolvido com o objetivo de verificar a originalidade de textos.</p>
+        <p>Este relatório visa verificar a originalidade do conteúdo e integridade do documentos.</p>
     </div>
     <div class="plagio">
         <h3 style="background: black; color:white; padding: 5px">Resultado:</h3>
@@ -102,6 +102,12 @@
                 </div>
             </div>
         @endforeach
+    </div>
+
+    <div style="margin-top: 24px; text-align: center; max-width: 150px; border-top: 1px solid #000000">
+        <div style="text-align: center; margin-top: 10px; font-weight: bold">
+            <span>Departamento dos Assuntos Científicos</span>
+        </div>
     </div>
 </body>
 </html>

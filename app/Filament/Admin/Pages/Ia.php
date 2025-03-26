@@ -16,6 +16,6 @@ class Ia extends Page
 
     public static function getNavigationBadge(): ?string
     {
-        return 'Breve';
+        return 'Em breve';
     }
 }

@@ -21,7 +21,9 @@ class SectionResource extends Resource
 
     protected static ?string $navigationGroup = 'Portal';
 
-    protected static ?string $modelLabel = 'formacão';
+    protected static ?string $title = 'formação';
+    protected static ?string $navigationLabel = 'Formações';
+    protected static ?string $modelLabel = 'formações';
 
     public static function form(Form $form): Form
     {

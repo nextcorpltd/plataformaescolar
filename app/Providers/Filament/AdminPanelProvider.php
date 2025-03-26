@@ -62,7 +62,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])->plugins([
                  OverlookPlugin::make()
-                ->sort(2)
+                ->sort(1)
                 ->columns([
                     'default' => 1,
                     'sm' => 2,

@@ -8,11 +8,11 @@
     <div class="flex flex-col gap-1">
         <div><strong>Autor/a:</strong> <span>{{ $repository->author ?? null }}</span></div>
         <div><strong>Curso:</strong> <span>{{ $repository->course ?? null }}</span></div>
-        <div><strong>Moderador:</strong> <span>{{ $repository->teacher ?? null }}</span></div>
+        <div><strong>Orientador:</strong> <span>{{ $repository->teacher ?? null }}</span></div>
         <div><strong>Data de verificação:</strong> <span>{{ date('d/m/Y H:i', strtotime($repository->created_at ?? null)) }}</span></div>
     </div>
 
-    <style>  
+    <style>
         .stats{
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -108,7 +108,7 @@
                     {{ $item->description }}
                 </div>
                 <div class="flex gap-2 items-center">
-                    <strong>Citações:</strong>
+                    <strong>Citações/Referências:</strong>
                     <x-filament::badge color="warning">{{ $item->citation }}</x-filament::badge>
                 </div>
                 <div class="flex flex-col gap-2">
