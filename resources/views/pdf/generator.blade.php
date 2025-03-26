@@ -104,8 +104,8 @@
         @endforeach
     </div>
 
-    <div style="margin-top: 24px; text-align: center; max-width: 150px; border-top: 1px solid #000000">
-        <div style="text-align: center; margin-top: 10px; font-weight: bold">
+    <div style="margin-top: 100px; text-align: center; ">
+        <div style="text-align: center; margin-top: 10px; font-weight: bold; border-top: 1px solid #000000">
             <span>Departamento dos Assuntos Científicos</span>
         </div>
     </div>
