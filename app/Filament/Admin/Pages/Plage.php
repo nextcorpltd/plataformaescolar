@@ -88,7 +88,7 @@ class Plage extends Page implements HasForms
             'Content-Type' => 'application/json',
         ])->post('https://api.gowinston.ai/v2/plagiarism', [
             'text' => $data['content'],
-            'file' => ($data['repository_id'] ? 'https://ispel.dembi.ao/storage/'.$tese->file : ''),
+            'file' => ($data['repository_id'] ? 'https://plataformaescolar.dembi.ao/storage/'.$tese->file : ''),
             //'file' => $data['file'],
         ]);
 
