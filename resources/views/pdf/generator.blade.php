@@ -46,7 +46,7 @@
     <div class="topo">
         <img src="images/logo.png" alt="" style="width: 100px"/>
         <h1>ISPEL</h1>
-        <h2>Instituto Superior Politécnico Evangélico do Lubango</h2>
+        <h2>Instituto Superior Politécnico</h2>
     </div>
     <div class="subtopo">
         <h3>Verificação de Plágio</h3>
