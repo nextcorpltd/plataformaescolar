@@ -32,7 +32,7 @@
         <!-- Theme CSS -->
         <link rel="stylesheet" href="{{ asset("assets/css/theme.min.css") }}">
 
-        <link rel="shortcut icon" href="{{ asset("images/logo.jpeg") }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset("images/logo.png") }}" type="image/x-icon">
     </head>
 
     <body class="antialiased">
@@ -40,7 +40,8 @@
             <nav  class="navbar navbar-expand-lg navbar-default fixed-top border-top border-primary navbar-dark">
                 <!-- navigation start -->
                 <div class="container">
-                    <a class="navbar-brand @@brandLogo" href="/"><img style="height: 75px; border-radius: 100%" src="{{ asset("images/logo.jpeg") }}" alt="" /></a>
+                    <a class="navbar-brand @@brandLogo" href="/">
+                        <img style="height: 40px;" src="{{ asset("images/logo.png") }}" alt="" /></a>
                     <button
                         class="navbar-toggler collapsed"
                         type="button"
@@ -78,7 +79,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="menu-3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quem somos</a>
                                 <ul class="dropdown-menu dropdown-menu-arrow dropdown-menu-xl-start" aria-labelledby="menu-3">
                                     <li>
-                                        <a class="dropdown-item" href="/quem-somos">O ISPEL</a>
+                                        <a class="dropdown-item" href="/quem-somos">O Intituto</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#">Estrutura Organizacional </a>
@@ -204,7 +205,7 @@
         </footer>
 
         @filamentScripts
-     
+
 
         <!-- end of footer -->
         <script src="{{ asset("assets/js/vendors/validation.js") }}"></script>

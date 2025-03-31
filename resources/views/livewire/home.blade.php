@@ -8,14 +8,18 @@
                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
+                @if ($slide)
                 <div class="carousel-item active">
-                <img src="{{ Storage::url($slide->image) ?? null }}" style="min-width: 450px" class="d-block w-100 " alt="...">
+                    <img src="{{ Storage::url($slide->image) ?? null }}" style="min-width: 450px" class="d-block w-100 " alt="...">
                 </div>
-                @foreach ($slides as $item)
-                <div class="carousel-item">
-                    <img src="{{ Storage::url($item->image) ?? null }}" style="min-width: 450px" class="d-block w-100 " alt="...">
-                </div>
-                @endforeach
+                @endif
+                @if ($slides)
+                    @foreach ($slides as $item)
+                    <div class="carousel-item">
+                        <img src="{{ Storage::url($item->image) ?? null }}" style="min-width: 450px" class="d-block w-100 " alt="...">
+                    </div>
+                    @endforeach
+                @endif
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -35,9 +39,9 @@
                     <div class="offset-xxl-3 col-xxl-6 col-lg-8 offset-lg-2 col-md-12 col-12">
                         <div class="mb-8 text-center">
                             <!-- heading -->
-                            <h2 class="mb-3 h1">Bem-vindo ao ISPEL</h2>
+                            <h2 class="mb-3 h1">Bem-vindo ao INSTITUTO</h2>
                             <!-- para -->
-                            <p class="lead">O Instituto Superior Politécnico Evangélico do Lubango (ISPEL) é uma instituição de ensino superior comprometida com a formação de profissionais altamente qualificados.</p>
+                            <p class="lead">O Instituto Superior Politécnico é uma instituição de ensino superior comprometida com a formação de profissionais altamente qualificados.</p>
                         </div>
                     </div>
                 </div>

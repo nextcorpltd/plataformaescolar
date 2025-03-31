@@ -31,11 +31,11 @@ class AdminPanelProvider extends PanelProvider
             ->passwordReset()
             ->profile()
             ->colors([
-                'primary' => Color::Sky,
+                'primary' => Color::Red,
             ])
-            ->brandLogo(asset('images/logo.jpeg'))
-            ->favicon(asset('images/logo.jpeg'))
-            ->brandLogoHeight('50px')
+            ->brandLogo(asset('images/logo.png'))
+            ->favicon(asset('images/logo.png'))
+            ->brandLogoHeight('40px')
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->pages([

@@ -44,7 +44,7 @@
 </head>
 <body style="font-family: Arial, Helvetica, sans-serif;">
     <div class="topo">
-        <img src="images/logo.jpeg" alt="" style="width: 100px"/>
+        <img src="images/logo.png" alt="" style="width: 100px"/>
         <h1>ISPEL</h1>
         <h2>Instituto Superior Politécnico Evangélico do Lubango</h2>
     </div>
